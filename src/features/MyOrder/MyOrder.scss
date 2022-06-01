@@ -1,0 +1,297 @@
+.myOrder {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    font-family: "Josefin Sans", sans-serif;
+    .myOrder-container {
+        width: 85%;
+        height: 100%;
+        background-color: #f5f7fb;
+        .myOrder-title {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            padding: 0 20px;
+            .myOrder-title-left {
+                width: 50%;
+                display: flex;
+                align-items: center;
+                p {
+                    font-size: 25px;
+                    font-weight: bold;
+                    color: #56606e;
+                }
+            }
+            .myOrder-title-right {
+                width: 50%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                i {
+                    margin: 0 15px;
+                }
+                .myOrder-title-right-order {
+                    color: #4da9ff;
+                }
+            }
+        }
+        .myOrder-search {
+            margin-bottom: 20px;
+            padding: 0 20px;
+            width: 100%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            input {
+                width: 300px;
+                height: 100%;
+                background-color: white;
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+                padding: 0 10px;
+                letter-spacing: 2px;
+                &::placeholder {
+                    letter-spacing: 2px;
+                }
+            }
+            .myOrder-search-icon {
+                height: 100%;
+                background-color: white;
+                display: flex;
+                align-items: center;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                padding-right: 15px;
+                i {
+                    &:hover {
+                        cursor: pointer;
+                        color: #4da9ff;
+                    }
+                }
+            }
+        }
+        .myOrder-listOrder-title {
+            width: 100%;
+            height: 50px;
+            background-color: white;
+        }
+        .myOrder-listOrder-title-list {
+            width: 100%;
+            height: calc(100% - 50px - 60px - 50px);
+            overflow-y: auto;
+            padding: 20px;
+            .myOrder-listOrder-title-list-order {
+                width: 100%;
+                height: auto;
+                background-color: white;
+                padding: 20px;
+                margin-bottom: 30px;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                .myOrder-listOrder-title-list-order-header {
+                    width: 100%;
+                    height: 30px;
+                    display: flex;
+                    .myOrder-listOrder-title-list-order-header-id {
+                        width: 50%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                    }
+                    .myOrder-listOrder-title-list-order-header-status {
+                        width: 50%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        .myOrder-listOrder-title-list-order-header-status-container {
+                            width: 150px;
+                            height: 100%;
+                            border-radius: 5px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                        .HANDLING {
+                            background-color: #fff5e5;
+                            color: #ff9900;
+                        }
+                        .CANCELED {
+                            background-color: #fde5e5;
+                            color: #e80000;
+                        }
+                        .DELIVERING {
+                            background-color: #e5ebfb;
+                            color: #003ad2;
+                        }
+                        .DONE {
+                            background-color: #e8f9ef;
+                            color: #16c35b;
+                        }
+                    }
+                }
+                .myOrder-listOrder-title-list-order-product {
+                    width: 100%;
+                    height: 100px;
+                    border-top: 1px solid rgba($color: gray, $alpha: 0.3);
+                    border-bottom: 1px solid rgba($color: gray, $alpha: 0.3);
+                    padding: 10px 0;
+                    display: flex;
+                    .myOrder-listOrder-title-list-order-product-image {
+                        width: 80px;
+                        height: 100%;
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                    .myOrder-listOrder-title-list-order-product-infor {
+                        width: 70%;
+                        height: 100%;
+                        padding: 0 10px;
+                        .myOrder-listOrder-title-list-order-product-infor-name {
+                            width: 100%;
+                            height: 25%;
+                            font-size: 18px;
+                        }
+                        .myOrder-listOrder-title-list-order-product-infor-size {
+                            width: 100%;
+                            height: 25%;
+                            font-size: 12px;
+                            color: rgba(0, 0, 0, 0.54);
+                        }
+                    }
+                    .myOrder-listOrder-title-list-order-product-price {
+                        width: calc(100% - 80px - 70%);
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        .myOrder-listOrder-title-list-order-product-price-main {
+                            color: rgba(0, 0, 0, 0.54);
+                            text-decoration: line-through;
+                        }
+                        .myOrder-listOrder-title-list-order-product-price-main-nosale {
+                            text-decoration: none;
+                        }
+                        .myOrder-listOrder-title-list-order-product-price-sale {
+                            margin-left: 10px;
+                            font-size: 16px;
+                            color: #fb2e86;
+                        }
+                    }
+                }
+                .myOrder-listOrder-title-list-order-footer {
+                    width: 100%;
+                    height: 50px;
+                    display: flex;
+                    .myOrder-listOrder-title-list-order-footer-btn {
+                        width: 50%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        button {
+                            padding: 10px 20px;
+                            background-color: white;
+                            border: 1px solid black;
+                            color: black;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            &:hover {
+                                background-color: black;
+                                border: 1px solid white;
+                                color: white;
+                            }
+                        }
+                    }
+                    .myOrder-listOrder-title-list-order-footer-total {
+                        width: 50%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        font-size: 20px;
+                        i {
+                            color: #ff2a00;
+                            margin-right: 5px;
+                        }
+                        span {
+                            margin-left: 10px;
+                            font-size: 25px;
+                            color: #ff2a00;
+                        }
+                    }
+                }
+            }
+        }
+        // .myOrder-listOrder {
+        //     width: 100%;
+        //     height: calc(100% - 50px - 20px - 40px);
+        //     display: flex;
+        //     align-items: center;
+        //     justify-content: center;
+        //     overflow-y: auto;
+        //     .myOrder-listOrder-table {
+        //         width: 95%;
+        //         height: 100%;
+        //         .myOrder-listOrder-table-status {
+        //             width: 90%;
+        //             height: 35px;
+        //             border-radius: 5px;
+        //             display: flex;
+        //             align-items: center;
+        //             justify-content: center;
+        //             font-weight: 500;
+        //         }
+        //         .HANDLING {
+        //             background-color: #fff5e5;
+        //             color: #ff9900;
+        //         }
+        //         .CANCELED {
+        //             background-color: #fde5e5;
+        //             color: #e80000;
+        //         }
+        //         .DELIVERING {
+        //             background-color: #e5ebfb;
+        //             color: #003ad2;
+        //         }
+        //         .DONE {
+        //             background-color: #e8f9ef;
+        //             color: #16c35b;
+        //         }
+        //         .myOrder-listOrder-table-view {
+        //             width: 100%;
+        //             height: 25px;
+        //             border: 1px solid #7e33e0;
+        //             border-radius: 5px;
+        //             color: white;
+        //             background-color: #7e33e0;
+        //             cursor: pointer;
+        //             &:hover {
+        //                 background-color: white;
+        //                 color: #7e33e0;
+        //             }
+        //         }
+        //     }
+        // }
+        .myOrder-listOrder-notfound {
+            width: 100%;
+            height: calc(100% - 50px - 20px - 40px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            img {
+                width: 100px;
+                height: 100px;
+                object-fit: cover;
+            }
+            p {
+                margin-top: 20px;
+                font-size: 20px;
+            }
+        }
+    }
+}

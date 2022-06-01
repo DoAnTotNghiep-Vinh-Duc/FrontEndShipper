@@ -1,0 +1,365 @@
+.myOrderDetail {
+    width: 100%;
+    height: 100vh;
+    font-family: "Josefin Sans", sans-serif;
+    display: flex;
+    .myOrderDetail-content {
+        width: 85%;
+        height: 100%;
+        padding: 0 20px;
+        overflow-y: auto;
+        .myOrderDetail-title {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            padding: 0 20px;
+            .myOrderDetail-title-left {
+                width: 50%;
+                display: flex;
+                align-items: center;
+                p {
+                    font-size: 25px;
+                    font-weight: bold;
+                    color: #56606e;
+                }
+            }
+            .myOrderDetail-title-right {
+                width: 50%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                i {
+                    margin: 0 15px;
+                }
+                .myOrderDetail-title-right-order {
+                    color: #4da9ff;
+                }
+            }
+        }
+        .myOrderDetail-status {
+            margin-top: 30px;
+            width: 100%;
+            height: 200px;
+            border: 1px solid blue;
+            border: 1px solid rgba($color: gray, $alpha: 0.3);
+            border-radius: 10px;
+            margin-bottom: 30px;
+            .myOrderDetail-status-title {
+                width: 100%;
+                height: 20%;
+                background-color: #f7f7f7;
+                border-top-right-radius: 10px;
+                border-top-left-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+            }
+            .myOrderDetail-status-body {
+                width: 100%;
+                height: 80%;
+                overflow: hidden;
+                .myOrderDetail-status-body-card {
+                    width: 100%;
+                    height: 80%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    .myOrderDetail-status-body-card-confirm {
+                        width: 8%;
+                        height: 80px;
+                        border-radius: 30px;
+                        background-color: #88aaf3;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        i {
+                            color: white;
+                            font-size: 40px;
+                        }
+                    }
+                    .line-confirm {
+                        width: 13%;
+                        height: 1px;
+                        border-top: 3px solid #88aaf3;
+                    }
+                    .myOrderDetail-status-body-card-handling {
+                        width: 8%;
+                        height: 80px;
+                        border-radius: 30px;
+                        background-color: #88aaf3;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        i {
+                            color: white;
+                            font-size: 40px;
+                        }
+                    }
+                    .line-handling {
+                        width: 13%;
+                        height: 1px;
+                        border-top: 3px solid #bebcbc;
+                    }
+                    .myOrderDetail-status-body-card-shipping {
+                        width: 8%;
+                        height: 80px;
+                        border-radius: 30px;
+                        background-color: #f5f5f5;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        i {
+                            color: #374250;
+                            font-size: 40px;
+                        }
+                    }
+                    .line-shipping {
+                        width: 13%;
+                        height: 1px;
+                        border-top: 3px solid #bebcbc;
+                    }
+                    .myOrderDetail-status-body-card-done {
+                        width: 8%;
+                        height: 80px;
+                        border-radius: 30px;
+                        background-color: #f5f5f5;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        i {
+                            color: #374250;
+                            font-size: 40px;
+                        }
+                    }
+                    .myOrderDetail-status-body-card-cancel {
+                        position: absolute;
+                        top: 20%;
+                        left: -4%;
+                        width: 200px;
+                        height: 40px;
+                        background-color: red;
+                        transform: rotate(-40deg);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        opacity: 0;
+                    }
+                }
+                .shipping {
+                    .line-handling {
+                        border-top: 3px solid #88aaf3;
+                    }
+                    .myOrderDetail-status-body-card-shipping {
+                        background-color: #88aaf3;
+                        i {
+                            color: white;
+                        }
+                    }
+                }
+                .done {
+                    .line-handling {
+                        border-top: 3px solid #88aaf3;
+                    }
+                    .myOrderDetail-status-body-card-shipping {
+                        background-color: #88aaf3;
+                        i {
+                            color: white;
+                        }
+                    }
+                    .line-shipping {
+                        border-top: 3px solid #88aaf3;
+                    }
+                    .myOrderDetail-status-body-card-done {
+                        background-color: #88aaf3;
+                        i {
+                            color: white;
+                        }
+                    }
+                }
+                .myOrderDetail-status-body-text {
+                    width: 100%;
+                    height: 20%;
+                    display: flex;
+                    align-items: flex-start;
+                    .myOrderDetail-status-body-text-confirm {
+                        width: auto;
+                        height: auto;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: #374250;
+                        font-weight: bold;
+                        font-size: 16px;
+                        margin-left: 150px;
+                    }
+                    .myOrderDetail-status-body-text-handling {
+                        width: auto;
+                        height: auto;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: #374250;
+                        font-weight: bold;
+                        font-size: 16px;
+                        margin-left: 170px;
+                    }
+                    .myOrderDetail-status-body-text-shipping {
+                        width: auto;
+                        height: auto;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: #374250;
+                        font-weight: bold;
+                        font-size: 16px;
+                        margin-left: 140px;
+                    }
+                    .myOrderDetail-status-body-text-done {
+                        width: auto;
+                        height: auto;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: #374250;
+                        font-weight: bold;
+                        font-size: 16px;
+                        margin-left: 120px;
+                    }
+                }
+            }
+            .cancel {
+                .myOrderDetail-status-body-card {
+                    .myOrderDetail-status-body-card-cancel {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        .myOrderDetail-order {
+            width: 100%;
+            height: auto;
+            border: 1px solid rgba($color: gray, $alpha: 0.3);
+            padding: 20px;
+            margin-bottom: 30px;
+            .myOrderDetail-order-logo {
+                width: 100%;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                p {
+                    cursor: pointer;
+                    color: #0043f1;
+                    font-weight: bold;
+                    font-size: 35px;
+                    letter-spacing: 2px;
+                }
+            }
+            .myOrderDetail-order-detail {
+                width: 100%;
+                height: 100px;
+                display: flex;
+                justify-content: space-between;
+                .myOrderDetail-order-detail-side {
+                    width: 30%;
+                    height: 100%;
+                    .myOrderDetail-order-detail-side-text {
+                        width: 100%;
+                        height: calc(100% / 3);
+                        label {
+                            font-weight: bold;
+                        }
+                        span {
+                            color: gray;
+                        }
+                    }
+                }
+            }
+            .myOrderDetail-table-title {
+                margin-top: 30px;
+                width: 100%;
+                height: 50px;
+                background-color: #f7f7f7;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+            }
+            .myOrderDetail-order-table {
+                width: 100%;
+                height: auto;
+                .myOrderDetail-table-image {
+                    width: 100%;
+                    height: 50px;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                    }
+                }
+                .myOrderDetail-table-size {
+                    font-size: 11px;
+                    color: #56606e;
+                }
+            }
+            .myOrderDetail-table-footer {
+                padding: 20px 0;
+                width: 100%;
+                height: 150px;
+                background-color: #f7f7f7;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                .myOrderDetail-table-footer-subtotal {
+                    width: 30%;
+                    height: 33%;
+                    display: flex;
+                    .myOrderDetail-table-footer-subtotal-title {
+                        width: 55%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                    }
+                    .myOrderDetail-table-footer-subtotal-cost {
+                        width: 45%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+                .myOrderDetail-table-footer-total {
+                    width: 30%;
+                    height: 33%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    font-size: 20px;
+                    font-weight: bold;
+                    .myOrderDetail-table-footer-total-title {
+                        width: 40%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                    }
+                    .myOrderDetail-table-footer-total-cost {
+                        width: 45%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+        .myOrderDetail-comment {
+            width: 100%;
+            height: auto;
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+}

@@ -1,0 +1,307 @@
+.shipperInformation {
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    font-family: "Josefin Sans", sans-serif;
+    display: flex;
+    .shipperInformation-container {
+        width: 85%;
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+        padding: 20px 0;
+        background-color: #f5f7fb;
+        .shipperInformation-infor-back {
+            width: 25%;
+            height: 100%;
+            .shipperInformation-infor {
+                width: 100%;
+                height: 60%;
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                .infor-name {
+                    width: 100%;
+                    height: 50px;
+                    font-weight: bold;
+                    font-size: 20px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                }
+                .infor-image {
+                    width: 100%;
+                    height: 100px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .infor-image-circle {
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 50%;
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+                .infor-button {
+                    width: 100%;
+                    height: 50px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    button {
+                        width: 50%;
+                        height: 60%;
+                        background-color: #7e33e0;
+                        color: white;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        position: relative;
+                        &:hover {
+                            background-color: #fb2e86;
+                        }
+                        input {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            height: 100%;
+                            width: 100%;
+                            font-size: 1px;
+                            text-align: right;
+                            opacity: 0;
+                            outline: none;
+                            cursor: inherit;
+                            display: block;
+                        }
+                    }
+                }
+                .infor-time {
+                    width: 100%;
+                    height: 50px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-end;
+                    text-align: center;
+                    b {
+                        margin-left: 5px;
+                    }
+                }
+            }
+        }
+        .shipperInformation-edit {
+            width: 50%;
+            height: 100%;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            .shipperInformation-edit-header {
+                width: 100%;
+                height: 70px;
+                background-color: #f7f7f7;
+                border-radius: 5px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+                padding: 0 20px;
+                p {
+                    font-size: 20px;
+                    font-weight: bold;
+                    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                }
+                span {
+                    font-style: italic;
+                    color: red;
+                }
+            }
+            .shipperInformation-edit-body {
+                width: 100%;
+                height: calc(100% - 70px);
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                .fullname-password {
+                    width: 100%;
+                    height: 60px;
+                    .fullname {
+                        width: 100%;
+                        height: 60px;
+                        display: flex;
+                        flex-direction: column;
+                        label {
+                            color: #717f8a;
+                            font-weight: bold;
+                        }
+                        input {
+                            width: 100%;
+                            border: 1px solid #717f8a;
+                            font-weight: bold;
+                            padding: 10px 5px;
+                            border-radius: 5px;
+                        }
+                    }
+                }
+
+                .email-phone {
+                    width: 100%;
+                    height: 60px;
+                    display: flex;
+                    justify-content: space-between;
+                    .email {
+                        width: 48%;
+                        height: 60px;
+                        display: flex;
+                        flex-direction: column;
+                        label {
+                            color: #717f8a;
+                            font-weight: bold;
+                        }
+                        input {
+                            width: 100%;
+                            border: 1px solid #717f8a;
+                            font-weight: bold;
+                            padding: 10px 5px;
+                            border-radius: 5px;
+                            opacity: 0.65;
+                            cursor: not-allowed;
+                        }
+                    }
+                    .phone-number {
+                        width: 48%;
+                        height: 60px;
+                        display: flex;
+                        flex-direction: column;
+                        label {
+                            color: #717f8a;
+                            font-weight: bold;
+                        }
+                        input {
+                            opacity: 0.65;
+                            width: 100%;
+                            border: 1px solid #717f8a;
+                            font-weight: bold;
+                            padding: 10px 5px;
+                            border-radius: 5px;
+                            cursor: not-allowed;
+                        }
+                    }
+                }
+
+                .city-district {
+                    width: 100%;
+                    height: 60px;
+                    display: flex;
+                    justify-content: space-between;
+                    .city {
+                        width: 48%;
+                        height: 60px;
+                        display: flex;
+                        flex-direction: column;
+                        label {
+                            color: #717f8a;
+                            font-weight: bold;
+                        }
+                        input {
+                            width: 100%;
+                            border: 1px solid #717f8a;
+                            font-weight: bold;
+                            padding: 10px 5px;
+                            border-radius: 5px;
+                        }
+                    }
+                    .district {
+                        width: 48%;
+                        height: 60px;
+                        display: flex;
+                        flex-direction: column;
+                        label {
+                            color: #717f8a;
+                            font-weight: bold;
+                        }
+                        input {
+                            width: 100%;
+                            border: 1px solid #717f8a;
+                            font-weight: bold;
+                            padding: 10px 5px;
+                            border-radius: 5px;
+                        }
+                    }
+                }
+
+                .ward-street {
+                    width: 100%;
+                    height: 60px;
+                    display: flex;
+                    justify-content: space-between;
+                    .ward {
+                        width: 48%;
+                        height: 60px;
+                        display: flex;
+                        flex-direction: column;
+                        label {
+                            color: #717f8a;
+                            font-weight: bold;
+                        }
+                        input {
+                            width: 100%;
+                            border: 1px solid #717f8a;
+                            font-weight: bold;
+                            padding: 10px 5px;
+                            border-radius: 5px;
+                        }
+                    }
+                    .street {
+                        width: 48%;
+                        height: 60px;
+                        display: flex;
+                        flex-direction: column;
+                        label {
+                            color: #717f8a;
+                            font-weight: bold;
+                        }
+                        input {
+                            width: 100%;
+                            border: 1px solid #717f8a;
+                            font-weight: bold;
+                            padding: 10px 5px;
+                            border-radius: 5px;
+                        }
+                    }
+                }
+                .btnUpdate {
+                    width: 100%;
+                    height: 50px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    button {
+                        width: 50%;
+                        height: 80%;
+                        background-color: #7e33e0;
+                        color: white;
+                        border-radius: 5px;
+                        font-size: 16px;
+                        font-weight: bold;
+                        letter-spacing: 3px;
+                        cursor: pointer;
+                        &:hover {
+                            background-color: #fb2e86;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
