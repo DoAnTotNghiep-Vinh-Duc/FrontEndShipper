@@ -117,6 +117,10 @@
                             background-color: #fff5e5;
                             color: #ff9900;
                         }
+                        .WAITING {
+                            background-color: #facff4;
+                            color: #fd007f;
+                        }
                         .CANCELED {
                             background-color: #fde5e5;
                             color: #e80000;
@@ -226,56 +230,6 @@
                 }
             }
         }
-        // .myOrder-listOrder {
-        //     width: 100%;
-        //     height: calc(100% - 50px - 20px - 40px);
-        //     display: flex;
-        //     align-items: center;
-        //     justify-content: center;
-        //     overflow-y: auto;
-        //     .myOrder-listOrder-table {
-        //         width: 95%;
-        //         height: 100%;
-        //         .myOrder-listOrder-table-status {
-        //             width: 90%;
-        //             height: 35px;
-        //             border-radius: 5px;
-        //             display: flex;
-        //             align-items: center;
-        //             justify-content: center;
-        //             font-weight: 500;
-        //         }
-        //         .HANDLING {
-        //             background-color: #fff5e5;
-        //             color: #ff9900;
-        //         }
-        //         .CANCELED {
-        //             background-color: #fde5e5;
-        //             color: #e80000;
-        //         }
-        //         .DELIVERING {
-        //             background-color: #e5ebfb;
-        //             color: #003ad2;
-        //         }
-        //         .DONE {
-        //             background-color: #e8f9ef;
-        //             color: #16c35b;
-        //         }
-        //         .myOrder-listOrder-table-view {
-        //             width: 100%;
-        //             height: 25px;
-        //             border: 1px solid #7e33e0;
-        //             border-radius: 5px;
-        //             color: white;
-        //             background-color: #7e33e0;
-        //             cursor: pointer;
-        //             &:hover {
-        //                 background-color: white;
-        //                 color: #7e33e0;
-        //             }
-        //         }
-        //     }
-        // }
         .myOrder-listOrder-notfound {
             width: 100%;
             height: calc(100% - 50px - 20px - 40px);

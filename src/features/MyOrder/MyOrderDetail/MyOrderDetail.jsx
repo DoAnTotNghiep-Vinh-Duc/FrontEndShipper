@@ -1,5 +1,4 @@
 import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles, useTheme, withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -15,7 +14,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 import orderAPI from "../../../api/orderAPI";
 import NavbarUser from "../../../components/NavBarUser/NavbarUser";
-import FormComment from "../../FormComment/FormComment";
 import Product from "../Product/Product";
 import "./MyOrderDetail.scss";
 
@@ -38,35 +36,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MyOrderDetail(props) {
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const classes = useStyles();
 
   const {
     params: { orderId },
   } = useRouteMatch();
 
-  const [open, setOpen] = useState(false);
   const [myOrder, setMyOrder] = useState({});
 
   useEffect(() => {
     (async () => {
       try {
         const response = await orderAPI.getOrderByOrderId(orderId);
-        setMyOrder(response.data.data[0]);
+        console.log(response);
+        setMyOrder(response.data.data.order[0]);
       } catch (error) {
         console.log(error);
       }
     })();
   }, [orderId]);
-
-  const handleClickOpenComment = () => {
-    setOpen(true);
-  };
-
-  const handleCloseComment = () => {
-    setOpen(false);
-  };
 
   return (
     <>
@@ -238,31 +226,8 @@ function MyOrderDetail(props) {
               </div>
             </div>
           </div>
-
-          {myOrder.status === "DONE" && (
-            <div className="myOrderDetail-comment">
-              <Button
-                variant="outlined"
-                color="secondary"
-                size="medium"
-                startIcon={<GradeIcon />}
-                onClick={handleClickOpenComment}
-              >
-                Đánh giá
-              </Button>
-            </div>
-          )}
         </div>
       </div>
-
-      <Dialog
-        fullScreen={fullScreen}
-        open={open}
-        onClose={handleCloseComment}
-        aria-labelledby="responsive-dialog-title"
-      >
-        <FormComment closeComment={handleCloseComment} />
-      </Dialog>
     </>
   );
 }

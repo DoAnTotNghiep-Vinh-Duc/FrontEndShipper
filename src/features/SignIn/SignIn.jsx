@@ -1,16 +1,26 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { unwrapResult } from "@reduxjs/toolkit";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import * as yup from "yup";
 import avatar from "../../assest/avatar.svg";
 import icon from "../../assest/iconshipper.png";
 import InputField from "../../form-control/InputField";
 import PasswordField from "../../form-control/PasswordField";
 import "./SignIn.scss";
+import { signIn } from "./userSlice";
 
+toast.configure();
 SignIn.propTypes = {};
 
 function SignIn(props) {
+  const dispatch = useDispatch();
+  const History = useHistory();
+  const userLogIn = useSelector((state) => state.user.currentUser);
+
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -31,7 +41,26 @@ function SignIn(props) {
   });
 
   const handleSubmit = (value) => {
-    console.log(value);
+    const fetchSignIn = async () => {
+      try {
+        const action = signIn({ email: value.email, password: value.password });
+        const actionResult = await dispatch(action);
+        const result = unwrapResult(actionResult);
+        if (result.status === 200) {
+          toast.success("Đăng nhập thành công", {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000,
+            theme: "light",
+          });
+
+          window.location = "http://localhost:3006/";
+          History.push("/");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchSignIn();
   };
 
   return (
