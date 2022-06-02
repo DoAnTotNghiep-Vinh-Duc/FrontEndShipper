@@ -1,6 +1,18 @@
 import Button from "@material-ui/core/Button";
+import { green } from "@material-ui/core/colors";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 import Paper from "@material-ui/core/Paper";
-import { makeStyles, useTheme, withStyles } from "@material-ui/core/styles";
+import {
+  createTheme,
+  makeStyles,
+  ThemeProvider,
+  useTheme,
+  withStyles,
+} from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -8,15 +20,21 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import GradeIcon from "@material-ui/icons/Grade";
+import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
+import CloseIcon from "@material-ui/icons/Close";
+import DirectionsBikeIcon from "@material-ui/icons/DirectionsBike";
 import moment from "moment";
+import "moment/locale/vi";
 import React, { useEffect, useState } from "react";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link, useHistory, useRouteMatch } from "react-router-dom";
+import { toast } from "react-toastify";
 import orderAPI from "../../../api/orderAPI";
 import NavbarUser from "../../../components/NavBarUser/NavbarUser";
 import Product from "../Product/Product";
 import "./MyOrderDetail.scss";
 
+moment.locale("vi");
+toast.configure();
 MyOrderDetail.propTypes = {};
 
 const StyledTableCell = withStyles((theme) => ({
@@ -33,28 +51,94 @@ const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 700,
   },
+  margin: {
+    margin: theme.spacing(1),
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
 }));
+
+const theme = createTheme({
+  palette: {
+    primary: green,
+  },
+});
 
 function MyOrderDetail(props) {
   const classes = useStyles();
+  const history = useHistory();
+  const usetheme = useTheme();
+  const fullScreen = useMediaQuery(usetheme.breakpoints.down("sm"));
 
   const {
     params: { orderId },
   } = useRouteMatch();
 
   const [myOrder, setMyOrder] = useState({});
+  const [openSuccess, setOpenSuccess] = useState(false);
+  const [openCancel, setOpenCancel] = useState(false);
 
   useEffect(() => {
     (async () => {
       try {
         const response = await orderAPI.getOrderByOrderId(orderId);
-        console.log(response);
         setMyOrder(response.data.data.order[0]);
       } catch (error) {
         console.log(error);
       }
     })();
   }, [orderId]);
+
+  const handleAccept = () => {
+    (async () => {
+      try {
+        const response = await orderAPI.receiveOrder(orderId);
+        if (response.status === 200) {
+          toast.success("Nhận hàng thành công", {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 2000,
+            theme: "dark",
+          });
+          history.push("/myOrders");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  };
+
+  const handleClickOpenSuccess = () => {
+    setOpenSuccess(true);
+  };
+  const handleCloseSuccess = () => {
+    setOpenSuccess(false);
+  };
+
+  const handleClickOpenCancel = () => {
+    setOpenCancel(true);
+  };
+  const handleCloseCancel = () => {
+    setOpenCancel(false);
+  };
+
+  const handleSuccessOrder = () => {
+    (async () => {
+      try {
+        const response = await orderAPI.successOrder(orderId);
+        if (response.status === 200) {
+          toast.success("Giao hàng thành công", {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 2000,
+            theme: "dark",
+          });
+          history.push("/myOrders");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  };
 
   return (
     <>
@@ -84,7 +168,9 @@ function MyOrderDetail(props) {
             >
               <div
                 className={`${"myOrderDetail-status-body-card"} ${
-                  myOrder.status === "DELIVERING"
+                  myOrder.status === "WAITING"
+                    ? "waiting"
+                    : myOrder.status === "DELIVERING"
                     ? "shipping"
                     : myOrder.status === "DONE"
                     ? "done"
@@ -99,6 +185,10 @@ function MyOrderDetail(props) {
                   <i className="bi bi-arrow-repeat"></i>
                 </div>
                 <div className="line-handling"></div>
+                <div className="myOrderDetail-status-body-card-waiting">
+                  <i className="bi bi-box2"></i>
+                </div>
+                <div className="line-waiting"></div>
                 <div className="myOrderDetail-status-body-card-shipping">
                   <i className="bi bi-truck"></i>
                 </div>
@@ -116,6 +206,9 @@ function MyOrderDetail(props) {
                 </div>
                 <div className="myOrderDetail-status-body-text-handling">
                   Chờ xử lý
+                </div>
+                <div className="myOrderDetail-status-body-text-waiting">
+                  Chờ nhận hàng
                 </div>
                 <div className="myOrderDetail-status-body-text-shipping">
                   Đang vận chuyển
@@ -139,8 +232,8 @@ function MyOrderDetail(props) {
                 <div className="myOrderDetail-order-detail-side-text">
                   <label htmlFor="">Địa chỉ: </label>
                   <span>
-                    {myOrder.street}, {myOrder.ward}, {myOrder.district},{" "}
-                    {myOrder.city}
+                    {myOrder.street}, Phường {myOrder.ward}, Quận{" "}
+                    {myOrder.district}, {myOrder.city}
                   </span>
                 </div>
                 <div className="myOrderDetail-order-detail-side-text">
@@ -155,8 +248,39 @@ function MyOrderDetail(props) {
                 </div>
                 <div className="myOrderDetail-order-detail-side-text">
                   <label htmlFor="">Ngày đặt hàng: </label>
-                  <span> {moment(myOrder.createdAt).format("L")}</span>
+                  <span>
+                    {moment(myOrder.createdAt).format("LTS")} -{" "}
+                    {moment(myOrder.createdAt).format("L")}
+                  </span>
                 </div>
+                {myOrder.status === "DELIVERING" && (
+                  <div className="myOrderDetail-order-detail-side-text">
+                    <label htmlFor="">Ngày giao hàng: </label>
+                    <span>
+                      {myOrder.deliveryDay.slice(11, 19)} -{" "}
+                      {moment(myOrder.deliveryDay).format("L")}
+                    </span>
+                  </div>
+                )}
+
+                {myOrder.status === "DONE" && (
+                  <>
+                    <div className="myOrderDetail-order-detail-side-text">
+                      <label htmlFor="">Ngày giao hàng: </label>
+                      <span>
+                        {myOrder.deliveryDay.slice(11, 19)} -{" "}
+                        {moment(myOrder?.deliveryDay).format("L")}
+                      </span>
+                    </div>
+                    <div className="myOrderDetail-order-detail-side-text">
+                      <label htmlFor="">Ngày nhận hàng: </label>
+                      <span>
+                        {myOrder.receiveDay.slice(11, 19)} -{" "}
+                        {moment(myOrder.receiveDay).format("L")}
+                      </span>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
             <div className="myOrderDetail-table-title">CHI TIẾT HÓA ĐƠN</div>
@@ -226,8 +350,99 @@ function MyOrderDetail(props) {
               </div>
             </div>
           </div>
+
+          {myOrder.status === "WAITING" && (
+            <div className="myOrderDetail-btn">
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                endIcon={<DirectionsBikeIcon />}
+                onClick={handleAccept}
+              >
+                Nhận đơn hàng
+              </Button>
+            </div>
+          )}
+
+          {myOrder.status === "DELIVERING" && (
+            <div className="myOrderDetail-btn">
+              <Button
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+                startIcon={<CloseIcon />}
+                size="large"
+                onClick={handleClickOpenCancel}
+              >
+                THẤT BẠI
+              </Button>
+              <ThemeProvider theme={theme}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  className={classes.margin}
+                  startIcon={<CheckCircleOutlineIcon />}
+                  onClick={handleClickOpenSuccess}
+                >
+                  THÀNH CÔNG
+                </Button>
+              </ThemeProvider>
+            </div>
+          )}
         </div>
       </div>
+
+      <Dialog
+        fullScreen={fullScreen}
+        open={openSuccess}
+        onClose={handleCloseSuccess}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <DialogTitle id="responsive-dialog-title">{"Xác nhận"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Bạn có chắc chắn xác nhận là giao hàng thành công không?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button variant="outlined" size="medium" onClick={handleCloseSuccess}>
+            hủy
+          </Button>
+          <Button
+            variant="contained"
+            size="medium"
+            color="primary"
+            className={classes.margin}
+            onClick={handleSuccessOrder}
+          >
+            XÁC NHẬN
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        fullScreen={fullScreen}
+        open={openCancel}
+        onClose={handleCloseCancel}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <DialogTitle id="responsive-dialog-title">{"Xác nhận"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Bạn có chắc chắn xác nhận là giao hàng thất bại không?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button variant="outlined" size="medium" onClick={handleCloseCancel}>
+            hủy
+          </Button>
+          <Button variant="contained" color="secondary">
+            XÁC NHẬN
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }

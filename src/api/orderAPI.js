@@ -13,6 +13,14 @@ const orderAPI = {
     const url = `/order/get-order-by-orderId/${orderId}`;
     return axiosClient.get(url);
   },
+  receiveOrder(orderId) {
+    const url = "/shipper/receive-order";
+    return axiosClient.post(url, { orderId });
+  },
+  successOrder(orderId) {
+    const url = "/shipper/finish-order";
+    return axiosClient.post(url, { orderId });
+  },
 };
 
 export default orderAPI;
