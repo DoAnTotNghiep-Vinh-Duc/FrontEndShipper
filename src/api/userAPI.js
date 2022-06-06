@@ -2,7 +2,7 @@ import axiosClient from "./axiosClient";
 
 const userAPI = {
   signIn(email, password) {
-    const url = "/auth/signin";
+    const url = "/auth/signin-shipper";
     return axiosClient.post(url, email, password);
   },
   logout(refreshToken) {

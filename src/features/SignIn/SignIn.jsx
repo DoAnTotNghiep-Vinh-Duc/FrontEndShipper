@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { unwrapResult } from "@reduxjs/toolkit";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -20,6 +20,7 @@ function SignIn(props) {
   const dispatch = useDispatch();
   const History = useHistory();
   const userLogIn = useSelector((state) => state.user.currentUser);
+  const [error, setError] = useState("");
 
   const schema = yup.object().shape({
     email: yup
@@ -58,6 +59,7 @@ function SignIn(props) {
         }
       } catch (error) {
         console.log(error);
+        setError(error.message);
       }
     };
     fetchSignIn();
@@ -83,7 +85,9 @@ function SignIn(props) {
               <div className="signin-container-wrapper-username">
                 <PasswordField name="password" label="Mật khẩu" form={form} />
               </div>
+              <div className="signin-container-wrapper-error">{error}</div>
             </div>
+
             <div className="signin-container-wrapper-forgot">
               <p>Quên mật khẩu?</p>
             </div>

@@ -140,6 +140,24 @@ function MyOrderDetail(props) {
     })();
   };
 
+  const handleFailOrder = () => {
+    (async () => {
+      try {
+        const response = await orderAPI.cancelOrder(orderId);
+        if (response.status === 204) {
+          toast.warning("Giao hàng thất bại!", {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 2000,
+            theme: "dark",
+          });
+          history.push("/myOrders");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  };
+
   return (
     <>
       <div className="myOrderDetail">
@@ -375,7 +393,7 @@ function MyOrderDetail(props) {
                 size="large"
                 onClick={handleClickOpenCancel}
               >
-                THẤT BẠI
+                KHÁCH HÀNG KHÔNG NHẬN HÀNG
               </Button>
               <ThemeProvider theme={theme}>
                 <Button
@@ -431,14 +449,18 @@ function MyOrderDetail(props) {
         <DialogTitle id="responsive-dialog-title">{"Xác nhận"}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Bạn có chắc chắn xác nhận là giao hàng thất bại không?
+            Bạn có chắc chắn xác nhận là khách hàng không nhận hàng không?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" size="medium" onClick={handleCloseCancel}>
             hủy
           </Button>
-          <Button variant="contained" color="secondary">
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handleFailOrder}
+          >
             XÁC NHẬN
           </Button>
         </DialogActions>

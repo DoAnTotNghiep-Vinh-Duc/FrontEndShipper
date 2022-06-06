@@ -47,7 +47,7 @@ axiosClient.interceptors.response.use(
     // console.log(error.response);
     const { config, status, data } = error.response;
 
-    if (config.url === "/auth/signin" && status === 403) {
+    if (config.url === "/auth/signin-shipper" && status === 403) {
       const error = data.error;
       return Promise.reject(error);
     }

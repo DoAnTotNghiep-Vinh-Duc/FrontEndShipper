@@ -51,16 +51,6 @@ function NavbarUser(props) {
             <p>Đơn hàng của tôi</p>
           </Link>
 
-          <Link
-            className={`${"userInformation-navbar-menu-password"} ${
-              location.pathname === "/changePassword" ? "active-password" : ""
-            }`}
-            to="/changePassword"
-          >
-            <i className="bi bi-key"></i>
-            <p>Đổi mật khẩu</p>
-          </Link>
-
           <div
             className={`${"userInformation-navbar-menu-password"}`}
             onClick={handleClickOpen}

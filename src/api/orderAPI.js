@@ -21,6 +21,10 @@ const orderAPI = {
     const url = "/shipper/finish-order";
     return axiosClient.post(url, { orderId });
   },
+  cancelOrder(orderId) {
+    const url = "/shipper/cancel-order";
+    return axiosClient.post(url, { orderId });
+  },
 };
 
 export default orderAPI;
