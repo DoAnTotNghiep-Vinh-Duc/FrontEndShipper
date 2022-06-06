@@ -30,6 +30,7 @@
   "scripts": {
     "start": "set PORT=3006 && react-scripts start",
     "build": "react-scripts build",
+    "build1": "npm run build && tar.exe -a -c -f ..\\do-an-tot-nghiep-vinh-duc-shipper.zip src public package.json && scp -i E:\\DoAnTotNghiep\\khoa-luan-tot-nghiep-vinh-duc-shipper.pem ..\\do-an-tot-nghiep-vinh-duc-shipper.zip ubuntu@46.137.238.44:~/ && deploy.bat",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
