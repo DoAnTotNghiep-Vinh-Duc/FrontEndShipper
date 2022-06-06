@@ -1,9 +1,8 @@
-import { makeStyles, useTheme, withStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
-
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React from "react";
 
 Product.propTypes = {
   product: PropTypes.object,
