@@ -54,7 +54,7 @@ function SignIn(props) {
             theme: "light",
           });
 
-          window.location = "http://localhost:3006/";
+          window.location = process.env.REACT_APP_BASE_URL;
           History.push("/");
         }
       } catch (error) {
