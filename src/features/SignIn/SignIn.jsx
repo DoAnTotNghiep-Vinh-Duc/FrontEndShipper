@@ -53,8 +53,6 @@ function SignIn(props) {
             autoClose: 2000,
             theme: "light",
           });
-
-          window.location = process.env.REACT_APP_BASE_URL;
           History.push("/");
         }
       } catch (error) {
